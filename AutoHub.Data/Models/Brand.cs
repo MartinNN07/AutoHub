@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AutoHub.Data.Models
 {
-	internal class Brand
+	public class Brand
 	{
 		[Key]
 		public int Id { get; set; }

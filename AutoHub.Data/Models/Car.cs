@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AutoHub.Data.Models
 {
-    internal class Car
+    public class Car
     {
         [Key]
         public int Id { get; set; }

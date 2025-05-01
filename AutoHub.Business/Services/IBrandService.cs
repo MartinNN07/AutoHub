@@ -3,22 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoHub.Data.Models;
 
 namespace AutoHub.Business.Services
 {
-    internal interface IBrandService
-    {
-        Task<Brand> CreateBrandAsync(Brand brand);
+	public interface IBrandService
+	{
+		Task<Brand> CreateCustomerAsync(Brand brand);
 
-        // READ
-        Task<IEnumerable<Brand>> GetAllBrandsAsync();
-        Task<Brand> GetBrandByIdAsync(int id);
-        Task<IEnumerable<Brand>> GetBrandsByNameAsync(string searchTerm);
+		Task<IEnumerable<Brand>> GetAllCustomersAsync();
+		Task<Brand> GetCustomerByIdAsync(int id);
+		Task<IEnumerable<Brand>> GetCustomersByNameAsync(string searchTerm);
 
-        // UPDATE
-        Task<Brand> UpdateBrandAsync(Brand brand);
+		Task<Brand> UpdateCustomerAsync(Brand brand);
 
-        // DELETE
-        Task<bool> DeleteBrandAsync(int id);
-    }
+		Task<bool> DeleteCustomerAsync(int id);
+	}
 }

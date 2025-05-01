@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace AutoHub.Data.Models
 {
 	[Index(nameof(CarId), IsUnique = true)]
-	internal class Sale
+	public class Sale
 	{
 		[Key]
 		public int Id { get; set; }
