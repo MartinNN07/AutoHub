@@ -73,10 +73,8 @@ namespace AutoHub.Business.Services
 			if (existingBrand == null)
 				throw new KeyNotFoundException($"Brand with ID {brand.Id} not found");
 
-			// Update properties
 			_context.Entry(existingBrand).CurrentValues.SetValues(brand);
 
-			// Save changes
 			await _context.SaveChangesAsync();
 
 			return existingBrand;
