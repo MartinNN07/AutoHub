@@ -6,8 +6,14 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoHub", "AutoHub\AutoHub.csproj", "{302F7AED-C8D8-4C4D-9B52-69E2958FCDB4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoHub.Business", "AutoHub.Business\AutoHub.Business.csproj", "{69093246-C543-4F06-812F-B3C4204B77AF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2C759C39-1641-4ABC-AB16-E6236E8AB8CA} = {2C759C39-1641-4ABC-AB16-E6236E8AB8CA}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoHub.Data", "AutoHub.Data\AutoHub.Data.csproj", "{2C759C39-1641-4ABC-AB16-E6236E8AB8CA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{302F7AED-C8D8-4C4D-9B52-69E2958FCDB4} = {302F7AED-C8D8-4C4D-9B52-69E2958FCDB4}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
