@@ -21,14 +21,13 @@ namespace AutoHub.Data.Models
 		public string LastName { get; set; }
 
 		[MaxLength(100)]
-		[EmailAddress] // Email validation attribute
+		[EmailAddress]
 		public string Email { get; set; }
 
 		[Required]
 		[MaxLength(20)]
 		public string PhoneNumber { get; set; }
 
-		// Navigation property for sales related to this customer
 		public virtual ICollection<Sale> Sales { get; set; }
 	}
 }
