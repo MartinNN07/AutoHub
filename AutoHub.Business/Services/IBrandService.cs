@@ -7,16 +7,16 @@ using AutoHub.Data.Models;
 
 namespace AutoHub.Business.Services
 {
-	public interface IBrandService
-	{
-		Task<Brand> CreateBrandAsync(Brand brand);
+    public interface IBrandService
+    {
+        Task<Brand> CreateBrandAsync(Brand brand);
 
-		Task<IEnumerable<Brand>> GetAllBrandsAsync();
-		Task<Brand> GetBrandByIdAsync(int id);
-		Task<IEnumerable<Brand>> GetBrandsByNameAsync(string searchTerm);
+        Task<IEnumerable<Brand>> GetAllBrandsAsync();
+        Task<Brand> GetBrandByIdAsync(int id);
+        Task<IEnumerable<Brand>> GetBrandsByNameAsync(string searchTerm);
 
-		Task<Brand> UpdateBrandAsync(Brand brand);
+        Task<Brand> UpdateBrandAsync(Brand brand);
 
-		Task<bool> DeleteBrandAsync(int id);
-	}
+        Task<bool> DeleteBrandAsync(int id);
+    }
 }
