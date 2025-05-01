@@ -8,5 +8,6 @@ namespace AutoHub.Data.Models
 {
 	internal class Sale
 	{
+
 	}
 }
