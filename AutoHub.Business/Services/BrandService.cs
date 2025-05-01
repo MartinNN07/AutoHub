@@ -1,83 +1,85 @@
-﻿using System;
+﻿using AutoHub.Data.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AutoHub.Data.Database;
-using AutoHub.Data.Models;
 
+using AutoHub.Data.Database;
+using Microsoft.EntityFrameworkCore;
 namespace AutoHub.Business.Services
 {
-    public class BrandService : IBrandService
-    {
-        private readonly AutoHubDbContext _context;
+	public class BrandService : IBrandService
+	{
+		private readonly AutoHubDbContext _context;
 
-        public BrandService(AutoHubDbContext context)
-        {
-            _context = context;
-        }
+		public BrandService(AutoHubDbContext context)
+		{
+			_context = context;
+		}
+		public async Task<Brand> CreateBrandAsync(Brand brand)
+		{
+			if (brand == null)
+				throw new ArgumentNullException(nameof(brand));
 
-        public async Task<Brand> CreatebrandAsync(Brand brand)
-        {
-            if (brand == null)
-                throw new ArgumentNullException(nameof(brand));
+			await _context.Brands.AddAsync(brand);
+			await _context.SaveChangesAsync();
 
-            await _context.Brands.AddAsync(brand);
-            await _context.SaveChangesAsync();
+			return brand;
+		}
 
-            return brand;
-        }
+		public async Task<bool> DeleteBrandAsync(int id)
+		{
+			var brand = await _context.Brands.FindAsync(id);
 
-        public async Task<IEnumerable<Brand>> GetAllbrandsAsync()
-        {
-            return await _context.Brands.ToListAsync();
-        }
+			if (brand == null)
+				return false;
 
-        public async Task<Brand> GetbrandByIdAsync(int id)
-        {
-            return await _context.Brands
-                .Include(c => c.Sales)
-                .FirstOrDefaultAsync(c => c.Id == id);
-        }
+			_context.Brands.Remove(brand);
+			await _context.SaveChangesAsync();
 
-        public async Task<IEnumerable<Brand>> GetbrandsByNameAsync(string searchTerm)
-        {
-            if (string.IsNullOrWhiteSpace(searchTerm))
-                return await GetAllbrandsAsync();
+			return true;
+		}
 
-            return await _context.Brands
-                .Where(c => c.FirstName.Contains(searchTerm) || c.LastName.Contains(searchTerm))
-                .ToListAsync();
-        }
+		public async Task<IEnumerable<Brand>> GetAllBrandsAsync()
+		{
+			return await _context.Brands.ToListAsync();
+		}
 
-        public async Task<Brand> UpdatebrandAsync(Brand brand)
-        {
-            if (brand == null)
-                throw new ArgumentNullException(nameof(brand));
+		public async Task<Brand> GetBrandByIdAsync(int id)
+		{
+			return await _context.Brands
+				.Include(b => b.Cars)
+				.FirstOrDefaultAsync(b => b.Id == id);
+		}
 
-            var existingbrand = await _context.Brands.FindAsync(brand.Id);
+		public async Task<IEnumerable<Brand>> GetBrandsByNameAsync(string searchTerm)
+		{
+			if (string.IsNullOrWhiteSpace(searchTerm))
+				return await GetAllBrandsAsync();
 
-            if (existingbrand == null)
-                throw new KeyNotFoundException($"brand with ID {brand.Id} not found");
+			return await _context.Brands
+				.Where(b => b.Name.Contains(searchTerm))
+				.ToListAsync();
+		}
 
-            _context.Entry(existingbrand).CurrentValues.SetValues(brand);
+		public async Task<Brand> UpdateBrandAsync(Brand brand)
+		{
+			if (brand == null)
+				throw new ArgumentNullException(nameof(brand));
 
-            await _context.SaveChangesAsync();
+			var existingBrand = await _context.Brands.FindAsync(brand.Id);
 
-            return existingbrand;
-        }
+			if (existingBrand == null)
+				throw new KeyNotFoundException($"Brand with ID {brand.Id} not found");
 
-        public async Task<bool> DeletebrandAsync(int id)
-        {
-            var brand = await _context.Brands.FindAsync(id);
+			// Update properties
+			_context.Entry(existingBrand).CurrentValues.SetValues(brand);
 
-            if (brand == null)
-                return false;
+			// Save changes
+			await _context.SaveChangesAsync();
 
-            _context.Brands.Remove(brand);
-            await _context.SaveChangesAsync();
-
-            return true;
-        }
-    }
+			return existingBrand;
+		}
+	}
 }

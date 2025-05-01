@@ -9,14 +9,14 @@ namespace AutoHub.Business.Services
 {
 	public interface IBrandService
 	{
-		Task<Brand> CreateCustomerAsync(Brand brand);
+		Task<Brand> CreateBrandAsync(Brand brand);
 
-		Task<IEnumerable<Brand>> GetAllCustomersAsync();
-		Task<Brand> GetCustomerByIdAsync(int id);
-		Task<IEnumerable<Brand>> GetCustomersByNameAsync(string searchTerm);
+		Task<IEnumerable<Brand>> GetAllBrandsAsync();
+		Task<Brand> GetBrandByIdAsync(int id);
+		Task<IEnumerable<Brand>> GetBrandsByNameAsync(string searchTerm);
 
-		Task<Brand> UpdateCustomerAsync(Brand brand);
+		Task<Brand> UpdateBrandAsync(Brand brand);
 
-		Task<bool> DeleteCustomerAsync(int id);
+		Task<bool> DeleteBrandAsync(int id);
 	}
 }
