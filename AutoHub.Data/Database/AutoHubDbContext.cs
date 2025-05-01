@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AutoHub.Data.Database
 {
-	internal class AutoHubDbContext :DbContext
+	public class AutoHubDbContext :DbContext
 	{
 		public DbSet<Car> Cars { get; set; }
 		public DbSet<Brand> Brands { get; set; }
