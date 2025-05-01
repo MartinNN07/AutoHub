@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using AutoHub.Data.Database;
 using Microsoft.EntityFrameworkCore;
+
 namespace AutoHub.Business.Services
 {
 	public class BrandService : IBrandService

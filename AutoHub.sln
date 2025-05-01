@@ -11,6 +11,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoHub.Business", "AutoHub
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoHub.Data", "AutoHub.Data\AutoHub.Data.csproj", "{2C759C39-1641-4ABC-AB16-E6236E8AB8CA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{302F7AED-C8D8-4C4D-9B52-69E2958FCDB4} = {302F7AED-C8D8-4C4D-9B52-69E2958FCDB4}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
