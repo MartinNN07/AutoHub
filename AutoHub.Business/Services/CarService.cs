@@ -61,7 +61,7 @@ namespace AutoHub.Business.Services
 				return await GetAllCarsAsync();
 
 			return await _context.Cars
-				.Where(c => c.Model.Contains(searchTerm))
+				.Where(c => c.Model.ToLower().Contains(searchTerm.ToLower()))
 				.ToListAsync();
 		}
 

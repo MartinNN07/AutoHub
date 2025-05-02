@@ -53,7 +53,7 @@ namespace AutoHub.Business.Services
 				return await GetAllCustomersAsync();
 
 			return await _context.Customers
-				.Where(c => c.FirstName.Contains(searchTerm))
+				.Where(c => c.FirstName.ToLower().Contains(searchTerm.ToLower()))
 				.ToListAsync();
 		}
 

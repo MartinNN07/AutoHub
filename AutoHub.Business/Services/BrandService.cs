@@ -60,7 +60,7 @@ namespace AutoHub.Business.Services
 				return await GetAllBrandsAsync();
 
 			return await _context.Brands
-				.Where(b => b.Name.Contains(searchTerm))
+				.Where(b => b.Name.ToLower().Contains(searchTerm.ToLower()))
 				.ToListAsync();
 		}
 
