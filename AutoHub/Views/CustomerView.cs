@@ -92,7 +92,7 @@ namespace AutoHub.Views
 
 			foreach (var customer in customers)
 			{
-				DisplayCustomerDetails(customer);
+				await DisplayCustomerDetails(customer);
 				Console.WriteLine("---------------------------");
 			}
 		}
@@ -205,6 +205,7 @@ namespace AutoHub.Views
 		public async Task UpdateCustomer()
 		{
 			Console.Clear();
+			await DisplayAllCustomers();
 			Console.WriteLine("========== Update Customer ==========");
 			Console.Write("Enter Customer ID to update: ");
 
@@ -273,6 +274,7 @@ namespace AutoHub.Views
 		public async Task DeleteCustomer()
 		{
 			Console.Clear();
+			await DisplayAllCustomers();
 			Console.WriteLine("========== Delete Customer ==========");
 			Console.Write("Enter Customer ID to delete: ");
 

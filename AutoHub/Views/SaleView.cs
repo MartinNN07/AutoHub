@@ -271,6 +271,7 @@ namespace AutoHub.Views
 		public async Task UpdateSale()
 		{
 			Console.Clear();
+			await DisplayAllSales();
 			Console.WriteLine("========== Update Sale ==========");
 			Console.Write("Enter Sale ID to update: ");
 
@@ -407,6 +408,7 @@ namespace AutoHub.Views
 		public async Task DeleteSale()
 		{
 			Console.Clear();
+			await DisplayAllSales();
 			Console.WriteLine("========== Delete Sale ==========");
 			Console.Write("Enter Sale ID to delete: ");
 

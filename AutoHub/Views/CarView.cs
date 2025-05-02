@@ -235,6 +235,7 @@ namespace AutoHub.Views
 		public async Task UpdateCar()
 		{
 			Console.Clear();
+			await DisplayAllCars();
 			Console.WriteLine("========== Update Car ==========");
 			Console.Write("Enter Car ID to update: ");
 
@@ -340,6 +341,7 @@ namespace AutoHub.Views
 		public async Task DeleteCar()
 		{
 			Console.Clear();
+			await DisplayAllCars();
 			Console.WriteLine("========== Delete Car ==========");
 			Console.Write("Enter Car ID to delete: ");
 

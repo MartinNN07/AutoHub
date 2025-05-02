@@ -174,6 +174,7 @@ namespace AutoHub.Views
         public async Task UpdateBrand()
         {
             Console.Clear();
+            await DisplayAllBrands();
             Console.WriteLine("========== Update Brand ==========");
             Console.Write("Enter Brand ID to update: ");
 
@@ -221,7 +222,8 @@ namespace AutoHub.Views
         public async Task DeleteBrand()
         {
             Console.Clear();
-            Console.WriteLine("========== Delete Brand ==========");
+			await DisplayAllBrands();
+			Console.WriteLine("========== Delete Brand ==========");
             Console.Write("Enter Brand ID to delete: ");
 
             if (!int.TryParse(Console.ReadLine(), out int id))
@@ -270,11 +272,7 @@ namespace AutoHub.Views
             Console.WriteLine($"ID: {brand.Id}");
             Console.WriteLine($"Name: {brand.Name}");
             Console.WriteLine($"Country of Origin: {brand.CountryOfOrigin ?? "Not specified"}");
-
-            if (brand.Cars != null)
-            {
-                Console.WriteLine($"Number of Cars: {brand.Cars.Count}");
-            }
+            Console.WriteLine($"Number of Cars: {brand.Cars.Count}");
         }
     }
 }
