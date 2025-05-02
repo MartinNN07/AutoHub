@@ -14,7 +14,7 @@ namespace AutoHub.Controllers
     {
         private readonly IBrandService _brandService;
         private readonly BrandView _brandView;
-        //asd
+
         public BrandController(IBrandService brandService)
         {
             _brandService = brandService;
