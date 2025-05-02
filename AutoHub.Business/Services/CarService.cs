@@ -44,7 +44,8 @@ namespace AutoHub.Business.Services
 
 		public async Task<IEnumerable<Car>> GetAllCarsAsync()
 		{
-			return await _context.Cars.ToListAsync();
+			var list = await _context.Cars.ToListAsync();
+			return list;
 		}
 
 		public async Task<Car> GetCarByIdAsync(int id)
