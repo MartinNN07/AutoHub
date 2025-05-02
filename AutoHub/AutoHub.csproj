@@ -7,4 +7,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AutoHub.Business\AutoHub.Business.csproj" />
+    <ProjectReference Include="..\AutoHub.Data\AutoHub.Data.csproj" />
+  </ItemGroup>
+
 </Project>
