@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutoHub.Business.Services
+namespace AutoHub.Business.Services.Interfaces
 {
 	public interface ICarService
 	{

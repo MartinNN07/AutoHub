@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoHub.Data.Models;
 
-namespace AutoHub.Business.Services
+namespace AutoHub.Business.Services.Interfaces
 {
     public interface ISaleService
     {

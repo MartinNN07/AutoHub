@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoHub.Data.Database;
 using Microsoft.EntityFrameworkCore;
+using AutoHub.Business.Services.Interfaces;
 
 namespace AutoHub.Business.Services
 {
