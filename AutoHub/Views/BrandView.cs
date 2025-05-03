@@ -9,15 +9,18 @@ using System.Threading.Tasks;
 
 namespace AutoHub.Views
 {
+    // Implements the brand management UI for console applications
     public class BrandView : IBrandView
     {
         private readonly IBrandService _brandService;
 
+        // Constructor injecting the brand service dependency
         public BrandView(IBrandService brandService)
         {
             _brandService = brandService;
         }
 
+        // Displays the main menu and handles user input
         public async Task DisplayMenu()
         {
             bool exit = false;
@@ -35,30 +38,31 @@ namespace AutoHub.Views
                 Console.WriteLine("=====================================");
                 Console.Write("Enter your choice: ");
 
+                // Read user input and handle menu selection
                 if (int.TryParse(Console.ReadLine(), out int choice))
                 {
                     switch (choice)
                     {
                         case 1:
-                            await DisplayAllBrands();
+                            await DisplayAllBrands(); // List all brands
                             break;
                         case 2:
-                            await FindBrandById();
+                            await FindBrandById(); // Find a brand by ID
                             break;
                         case 3:
-                            await SearchBrandsByName();
+                            await SearchBrandsByName(); // Search brands by name
                             break;
                         case 4:
-                            await AddNewBrand();
+                            await AddNewBrand(); // Add a new brand
                             break;
                         case 5:
-                            await UpdateBrand();
+                            await UpdateBrand(); // Update an existing brand
                             break;
                         case 6:
-                            await DeleteBrand();
+                            await DeleteBrand(); // Delete a brand
                             break;
                         case 0:
-                            exit = true;
+                            exit = true; // Exit the menu
                             break;
                         default:
                             Console.WriteLine("Invalid choice. Please try again.");
@@ -78,6 +82,7 @@ namespace AutoHub.Views
             }
         }
 
+        // Fetches and displays all brands from the service
         public async Task DisplayAllBrands()
         {
             Console.Clear();
@@ -97,6 +102,7 @@ namespace AutoHub.Views
             }
         }
 
+        // Finds a brand by its ID and displays it
         public async Task FindBrandById()
         {
             Console.Clear();
@@ -121,6 +127,7 @@ namespace AutoHub.Views
             }
         }
 
+        // Searches for brands by a name or partial name
         public async Task SearchBrandsByName()
         {
             Console.Clear();
@@ -142,11 +149,13 @@ namespace AutoHub.Views
             }
         }
 
+        // Prompts the user to input a new brand and adds it via the service
         public async Task AddNewBrand()
         {
             Console.Clear();
             Console.WriteLine("========== Add New Brand ==========");
 
+            // Prompt for brand details
             try
             {
                 var brand = new Brand();
@@ -171,10 +180,11 @@ namespace AutoHub.Views
             }
         }
 
+        // Updates an existing brand's information
         public async Task UpdateBrand()
         {
             Console.Clear();
-            await DisplayAllBrands();
+            await DisplayAllBrands(); // Show current list before updating
             Console.WriteLine("========== Update Brand ==========");
             Console.Write("Enter Brand ID to update: ");
 
@@ -184,6 +194,7 @@ namespace AutoHub.Views
                 return;
             }
 
+            // Fetch the existing brand
             var existingBrand = await _brandService.GetBrandByIdAsync(id);
             if (existingBrand == null)
             {
@@ -192,8 +203,10 @@ namespace AutoHub.Views
             }
 
             await DisplayBrandDetails(existingBrand);
+
             Console.WriteLine("\nEnter new details (press Enter to keep current values):");
 
+            // Prompt for new details
             Console.Write($"Name ({existingBrand.Name}): ");
             string name = Console.ReadLine() ?? string.Empty;
             if (!string.IsNullOrWhiteSpace(name))
@@ -201,6 +214,7 @@ namespace AutoHub.Views
                 existingBrand.Name = name;
             }
 
+            // Optional: Update country of origin
             Console.Write($"Country of Origin ({existingBrand.CountryOfOrigin}): ");
             string countryOfOrigin = Console.ReadLine() ?? string.Empty;
             if (!string.IsNullOrWhiteSpace(countryOfOrigin))
@@ -219,11 +233,12 @@ namespace AutoHub.Views
             }
         }
 
+        // Deletes a brand by ID after confirmation
         public async Task DeleteBrand()
         {
             Console.Clear();
-			await DisplayAllBrands();
-			Console.WriteLine("========== Delete Brand ==========");
+            await DisplayAllBrands(); // Show current brands for reference
+            Console.WriteLine("========== Delete Brand ==========");
             Console.Write("Enter Brand ID to delete: ");
 
             if (!int.TryParse(Console.ReadLine(), out int id))
@@ -241,6 +256,7 @@ namespace AutoHub.Views
 
             await DisplayBrandDetails(brand);
 
+            // Warn if brand has associated cars
             if (brand.Cars != null && brand.Cars.Any())
             {
                 Console.WriteLine($"\nThis brand has {brand.Cars.Count} associated cars. Deleting it may affect these cars.");
@@ -249,6 +265,7 @@ namespace AutoHub.Views
             Console.Write("\nAre you sure you want to delete this brand? (Y/N): ");
             string confirmation = Console.ReadLine() ?? string.Empty;
 
+            // Confirm deletion
             if (confirmation.Trim().ToUpper().StartsWith("Y"))
             {
                 bool result = await _brandService.DeleteBrandAsync(id);
@@ -267,6 +284,7 @@ namespace AutoHub.Views
             }
         }
 
+        // Displays detailed information for a single brand
         public async Task DisplayBrandDetails(Brand brand)
         {
             Console.WriteLine($"ID: {brand.Id}");
