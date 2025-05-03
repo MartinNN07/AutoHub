@@ -12,7 +12,7 @@ namespace AutoHub.Data.Database
 	{
 		public AutoHubDbContext CreateDbContext(string[] args)
 		{
-			//localdb
+			//construct a new DbContextOptionsBuilder using the connection string
 			var options = new DbContextOptionsBuilder<AutoHubDbContext>()
 				.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=AutoHubDb;Trusted_Connection=True;MultipleActiveResultSets=true");
 

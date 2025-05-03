@@ -43,7 +43,9 @@ namespace AutoHub.Controllers
 
         public async Task<Brand> CreateBrandAsync(Brand brand)
         {
-            if (string.IsNullOrWhiteSpace(brand.Name))
+
+			// Validate incoming brand
+			if (string.IsNullOrWhiteSpace(brand.Name))
             {
                 throw new ArgumentException("Brand name is required.");
             }
@@ -64,7 +66,9 @@ namespace AutoHub.Controllers
         public async Task<Brand> UpdateBrandAsync(Brand brand)
         {
             var existingBrand = await _brandService.GetBrandByIdAsync(brand.Id);
-            if (existingBrand == null)
+
+			// Validate incoming brand
+			if (existingBrand == null)
             {
                 throw new KeyNotFoundException($"Brand with ID {brand.Id} not found.");
             }
@@ -95,7 +99,8 @@ namespace AutoHub.Controllers
                 return false;
             }
 
-            if (existingBrand.Cars != null && existingBrand.Cars.Any())
+			// Check if the brand has associated cars
+			if (existingBrand.Cars != null && existingBrand.Cars.Any())
             {
                 throw new InvalidOperationException(
                     $"Cannot delete brand with ID {id} because it has {existingBrand.Cars.Count} associated cars. " +
