@@ -25,7 +25,7 @@ namespace AutoHub.Data.Database
 		{
 			base.OnModelCreating(modelBuilder);
 
-
+			//setup the relationships between the entities
 			modelBuilder.Entity<Car>()
 				.HasOne(c => c.Brand)
 				.WithMany(b => b.Cars)

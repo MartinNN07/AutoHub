@@ -43,6 +43,7 @@ namespace AutoHub.Controllers
 
 		public async Task<Customer> CreateCustomerAsync(Customer customer)
 		{
+			// Validate incoming customer
 			if (string.IsNullOrWhiteSpace(customer.FirstName))
 			{
 				throw new ArgumentException("First name is required.");
@@ -69,6 +70,8 @@ namespace AutoHub.Controllers
 		public async Task<Customer> UpdateCustomerAsync(Customer customer)
 		{
 			var existingCustomer = await _customerService.GetCustomerByIdAsync(customer.Id);
+
+			// Validate incoming and existing customer
 			if (existingCustomer == null)
 			{
 				throw new KeyNotFoundException($"Customer with ID {customer.Id} not found.");
@@ -108,6 +111,7 @@ namespace AutoHub.Controllers
 			return await _customerService.DeleteCustomerAsync(id);
 		}
 
+		//email validation helper method
 		private bool IsValidEmail(string email)
 		{
 			try

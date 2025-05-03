@@ -8,114 +8,124 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace AutoHub
 {
-    internal class Program
-    {
-        static async Task Main(string[] args)
-        {
-            // Setup dependency injection
-            var serviceProvider = ConfigureServices();
+	internal class Program
+	{
+		static async Task Main(string[] args)
+		{
+			var serviceProvider = ConfigureServices();
+			await RunMainMenu(serviceProvider);
+		}
 
-            // Run the main menu
-            await RunMainMenu(serviceProvider);
-        }
+		static ServiceProvider ConfigureServices()
+		{
+			//setup dependency injection
+			var services = new ServiceCollection();
 
-        static ServiceProvider ConfigureServices()
-        {
-            // Create service collection
-            var services = new ServiceCollection();
+			//configure database connection
+			services.AddDbContext<AutoHubDbContext>(options =>
+				options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=AutoHubDb;Trusted_Connection=True;MultipleActiveResultSets=true"));
 
-            // Configure database connection
-            services.AddDbContext<AutoHubDbContext>(options =>
-                options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=AutoHubDb;Trusted_Connection=True;"));
+			//register business services
+			services.AddScoped<IBrandService, BrandService>();
+			services.AddScoped<ICarService, CarService>();
+			services.AddScoped<ICustomerService, CustomerService>();
+			services.AddScoped<ISaleService, SaleService>();
+			services.AddScoped<ISalespersonService, SalespersonService>();
 
-            // Register business services
-            services.AddScoped<IBrandService, BrandService>();
-            services.AddScoped<ICarService, CarService>();
-            services.AddScoped<ICustomerService, CustomerService>();
-            services.AddScoped<ISaleService, SaleService>();
-            services.AddScoped<ISalespersonService, SalespersonService>();
+			//register controllers
+			services.AddScoped<ICarController, CarController>();
+			services.AddScoped<IBrandController, BrandController>();
+			services.AddScoped<ICustomerController, CustomerController>();
+			services.AddScoped<ISaleController, SaleController>();
+			services.AddScoped<ISalespersonController, SalespersonController>();
 
-            // Register controllers
-            services.AddScoped<ICarController, CarController>();
-            services.AddScoped<IBrandController, BrandController>();
-            // Add other controllers as needed when they're implemented
+			return services.BuildServiceProvider();
+		}
 
-            return services.BuildServiceProvider();
-        }
+		static async Task RunMainMenu(ServiceProvider serviceProvider)
+		{
+			bool exit = false;
 
-        static async Task RunMainMenu(ServiceProvider serviceProvider)
-        {
-            bool exit = false;
+			while (!exit)
+			{
+				// Main menu
+				Console.Clear();
+				Console.WriteLine("========== AutoHub Management System ==========");
+				Console.WriteLine("1. Car Management");
+				Console.WriteLine("2. Customer Management");
+				Console.WriteLine("3. Salesperson Management");
+				Console.WriteLine("4. Sales Management");
+				Console.WriteLine("5. Brand Management");
+				Console.WriteLine("0. Exit");
+				Console.WriteLine("================================================");
+				Console.Write("Enter your choice: ");				
 
-            while (!exit)
-            {
-                Console.Clear();
-                Console.WriteLine("========== AutoHub Management System ==========");
-                Console.WriteLine("1. Car Management");
-                Console.WriteLine("2. Customer Management");
-                Console.WriteLine("3. Salesperson Management");
-                Console.WriteLine("4. Sales Management");
-                Console.WriteLine("5. Brand Management");
-                Console.WriteLine("0. Exit");
-                Console.WriteLine("==============================================");
-                Console.Write("Enter your choice: ");
+				if (int.TryParse(Console.ReadLine(), out int choice))
+				{
+					switch (choice)
+					{
+						case 1:
+							await ManageCars(serviceProvider);
+							break;
+						case 2:
+							await ManageCustomers(serviceProvider);
+							break;
+						case 3:
+							await ManageSalespersons(serviceProvider);
+							break;
+						case 4:
+							await ManageSales(serviceProvider);
+							break;
+						case 5:
+							await ManageBrands(serviceProvider);
+							break;
+						case 0:
+							exit = true;
+							break;
+						default:
+							Console.WriteLine("Invalid choice. Please try again.");
+							await Task.Delay(1500);
+							break;
+					}
+				}
+				else
+				{
+					Console.WriteLine("Invalid input. Please enter a number.");
+					await Task.Delay(1500);
+				}
+			}
 
-                if (int.TryParse(Console.ReadLine(), out int choice))
-                {
-                    switch (choice)
-                    {
-                        case 1:
-                            await ManageCars(serviceProvider);
-                            break;
-                        case 2:
-                            // Once implemented
-                            Console.WriteLine("Customer Management - Coming Soon!");
-                            await Task.Delay(1500);
-                            break;
-                        case 3:
-                            // Once implemented  
-                            Console.WriteLine("Salesperson Management - Coming Soon!");
-                            await Task.Delay(1500);
-                            break;
-                        case 4:
-                            // Once implemented
-                            Console.WriteLine("Sales Management - Coming Soon!");
-                            await Task.Delay(1500);
-                            break;
-                        case 5:
-                            await ManageBrands(serviceProvider);
-                            break;
-                        case 0:
-                            exit = true;
-                            break;
-                        default:
-                            Console.WriteLine("Invalid choice. Please try again.");
-                            await Task.Delay(1500);
-                            break;
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Invalid input. Please enter a number.");
-                    await Task.Delay(1500);
-                }
-            }
+			Console.WriteLine("Thank you for using AutoHub Management System!");
+		}
 
-            Console.WriteLine("Thank you for using AutoHub Management System!");
-        }
+		static async Task ManageCars(ServiceProvider serviceProvider)
+		{
+			var carController = serviceProvider.GetRequiredService<ICarController>();
+			await carController.Run();
+		}
 
-        static async Task ManageCars(ServiceProvider serviceProvider)
-        {
-            var carController = serviceProvider.GetRequiredService<ICarController>();
-            await carController.Run();
-        }
+		static async Task ManageCustomers(ServiceProvider serviceProvider)
+		{
+			var customerController = serviceProvider.GetRequiredService<ICustomerController>();
+			await customerController.Run();
+		}
 
-        static async Task ManageBrands(ServiceProvider serviceProvider)
-        {
-            var brandController = serviceProvider.GetRequiredService<IBrandController>();
-            await brandController.Run();
-        }
+		static async Task ManageSales(ServiceProvider serviceProvider)
+		{
+			var saleController = serviceProvider.GetRequiredService<ISaleController>();
+			await saleController.Run();
+		}
 
-        // Add methods for other management sections as they're implemented
-    }
+		static async Task ManageSalespersons(ServiceProvider serviceProvider)
+		{
+			var salespersonController = serviceProvider.GetRequiredService<ISalespersonController>();
+			await salespersonController.Run();
+		}
+
+		static async Task ManageBrands(ServiceProvider serviceProvider)
+		{
+			var brandController = serviceProvider.GetRequiredService<IBrandController>();
+			await brandController.Run();
+		}
+	}
 }

@@ -44,6 +44,7 @@ namespace AutoHub.Controllers
 
 		public async Task<Salesperson> CreateSalespersonAsync(Salesperson salesperson)
 		{
+			// Validate incoming salesperson
 			if (string.IsNullOrWhiteSpace(salesperson.FirstName))
 			{
 				throw new ArgumentException("First name is required.");
@@ -70,6 +71,8 @@ namespace AutoHub.Controllers
 		public async Task<Salesperson> UpdateSalespersonAsync(Salesperson salesperson)
 		{
 			var existingSalesperson = await _salespersonService.GetSalespersonByIdAsync(salesperson.Id);
+
+			// Validate incoming salesperson
 			if (existingSalesperson == null)
 			{
 				throw new KeyNotFoundException($"Salesperson with ID {salesperson.Id} not found.");
