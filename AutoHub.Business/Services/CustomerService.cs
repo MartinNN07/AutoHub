@@ -20,7 +20,8 @@ namespace AutoHub.Business.Services
 		}
 		public async Task<Customer> CreateCustomerAsync(Customer customer)
 		{
-			if (customer == null)
+            //	Validate the customer object
+            if (customer == null)
 				throw new ArgumentNullException(nameof(customer));
 
 			await _context.Customers.AddAsync(customer);
@@ -31,7 +32,8 @@ namespace AutoHub.Business.Services
 
 		public async Task<bool> DeleteCustomerAsync(int id)
 		{
-			var customer = await _context.Customers.FindAsync(id);
+            //	Validate the ID
+            var customer = await _context.Customers.FindAsync(id);
 
 			if (customer == null)
 				return false;
@@ -44,12 +46,14 @@ namespace AutoHub.Business.Services
 
 		public async Task<IEnumerable<Customer>> GetAllCustomersAsync()
 		{
-			return await _context.Customers.ToListAsync();
+            // Fetch all customers from the database
+            return await _context.Customers.ToListAsync();
 		}
 
 		public async Task<IEnumerable<Customer>> GetCustomerByFirstNameAsync(string searchTerm)
 		{
-			if (string.IsNullOrWhiteSpace(searchTerm))
+            // Validate the search term
+            if (string.IsNullOrWhiteSpace(searchTerm))
 				return await GetAllCustomersAsync();
 
 			return await _context.Customers
@@ -59,7 +63,8 @@ namespace AutoHub.Business.Services
 
 		public async Task<Customer> GetCustomerByIdAsync(int id)
 		{
-			return await _context.Customers
+            // Validate the ID
+            return await _context.Customers
 				.Include(c => c.Sales)
 				.ThenInclude(s => s.Car)
 				.FirstOrDefaultAsync(c => c.Id == id);
@@ -67,7 +72,8 @@ namespace AutoHub.Business.Services
 
 		public async Task<Customer> UpdateCustomerAsync(Customer customer)
 		{
-			if (customer == null)
+            //	Validate the customer object
+            if (customer == null)
 				throw new ArgumentNullException(nameof(customer));
 
 			var existingCustomer = await _context.Customers.FindAsync(customer.Id);
