@@ -81,9 +81,10 @@ namespace AutoHub.Views
 			}
 		}
 
-		public async Task DisplayAllCars()
+        public async Task DisplayAllCars()
 		{
-			Console.Clear();
+            // Clear the console and display the header
+            Console.Clear();
 			Console.WriteLine("========== All Cars ==========");
 
 			var cars = await _carService.GetAllCarsAsync();
