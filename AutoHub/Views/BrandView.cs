@@ -42,7 +42,7 @@ namespace AutoHub.Views
                 if (int.TryParse(Console.ReadLine(), out int choice))
                 {
                     switch (choice)
-                    {
+                    { 
                         case 1:
                             await DisplayAllBrands(); // List all brands
                             break;
@@ -290,7 +290,11 @@ namespace AutoHub.Views
             Console.WriteLine($"ID: {brand.Id}");
             Console.WriteLine($"Name: {brand.Name}");
             Console.WriteLine($"Country of Origin: {brand.CountryOfOrigin ?? "Not specified"}");
-            Console.WriteLine($"Number of Cars: {brand.Cars.Count}");
+            
+            if (brand.Cars != null && brand.Cars.Any())
+			{
+                Console.WriteLine($"Number of Cars: {brand.Cars.Count}");
+			}
         }
     }
 }
