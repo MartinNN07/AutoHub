@@ -39,79 +39,79 @@
             // 
             // mainmenulabel
             // 
-            mainmenulabel.AutoSize = true;
-            mainmenulabel.Font = new Font("Calibri", 36F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            mainmenulabel.Location = new Point(414, 43);
+            mainmenulabel.Font = new Font("Calibri", 48F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            mainmenulabel.Location = new Point(382, 57);
             mainmenulabel.Name = "mainmenulabel";
-            mainmenulabel.Size = new Size(256, 59);
+            mainmenulabel.Size = new Size(404, 107);
             mainmenulabel.TabIndex = 0;
             mainmenulabel.Text = "Main Menu";
+            mainmenulabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // carmanagementbutton
             // 
-            carmanagementbutton.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            carmanagementbutton.Location = new Point(348, 161);
+            carmanagementbutton.Font = new Font("Microsoft Sans Serif", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
+            carmanagementbutton.Location = new Point(382, 185);
             carmanagementbutton.Name = "carmanagementbutton";
-            carmanagementbutton.Size = new Size(378, 50);
+            carmanagementbutton.Size = new Size(404, 81);
             carmanagementbutton.TabIndex = 1;
             carmanagementbutton.Text = "Car Management";
             carmanagementbutton.UseVisualStyleBackColor = true;
             // 
             // customermanagementbutton
             // 
-            customermanagementbutton.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            customermanagementbutton.Location = new Point(348, 217);
+            customermanagementbutton.Font = new Font("Microsoft Sans Serif", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
+            customermanagementbutton.Location = new Point(382, 272);
             customermanagementbutton.Name = "customermanagementbutton";
-            customermanagementbutton.Size = new Size(378, 50);
+            customermanagementbutton.Size = new Size(404, 81);
             customermanagementbutton.TabIndex = 2;
             customermanagementbutton.Text = "Customer Management";
             customermanagementbutton.UseVisualStyleBackColor = true;
             // 
             // salespersonmanagementbutton
             // 
-            salespersonmanagementbutton.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            salespersonmanagementbutton.Location = new Point(348, 273);
+            salespersonmanagementbutton.Font = new Font("Microsoft Sans Serif", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
+            salespersonmanagementbutton.Location = new Point(382, 359);
             salespersonmanagementbutton.Name = "salespersonmanagementbutton";
-            salespersonmanagementbutton.Size = new Size(378, 50);
+            salespersonmanagementbutton.Size = new Size(404, 81);
             salespersonmanagementbutton.TabIndex = 3;
             salespersonmanagementbutton.Text = "Salesperson Management";
             salespersonmanagementbutton.UseVisualStyleBackColor = true;
             // 
             // salesmanagementbutton
             // 
-            salesmanagementbutton.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            salesmanagementbutton.Location = new Point(348, 329);
+            salesmanagementbutton.Font = new Font("Microsoft Sans Serif", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
+            salesmanagementbutton.Location = new Point(382, 446);
             salesmanagementbutton.Name = "salesmanagementbutton";
-            salesmanagementbutton.Size = new Size(378, 50);
+            salesmanagementbutton.Size = new Size(404, 81);
             salesmanagementbutton.TabIndex = 4;
             salesmanagementbutton.Text = "Sales Management";
             salesmanagementbutton.UseVisualStyleBackColor = true;
             // 
             // brandmanagementbutton
             // 
-            brandmanagementbutton.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            brandmanagementbutton.Location = new Point(348, 385);
+            brandmanagementbutton.Font = new Font("Microsoft Sans Serif", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
+            brandmanagementbutton.Location = new Point(382, 533);
             brandmanagementbutton.Name = "brandmanagementbutton";
-            brandmanagementbutton.Size = new Size(378, 50);
+            brandmanagementbutton.Size = new Size(404, 81);
             brandmanagementbutton.TabIndex = 5;
             brandmanagementbutton.Text = "Brand Management";
             brandmanagementbutton.UseVisualStyleBackColor = true;
             // 
             // exitbutton
             // 
-            exitbutton.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            exitbutton.Location = new Point(348, 441);
+            exitbutton.Font = new Font("Microsoft Sans Serif", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
+            exitbutton.Location = new Point(382, 620);
             exitbutton.Name = "exitbutton";
-            exitbutton.Size = new Size(378, 50);
+            exitbutton.Size = new Size(404, 81);
             exitbutton.TabIndex = 6;
             exitbutton.Text = "Exit";
             exitbutton.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // MainMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1090, 592);
+            ClientSize = new Size(1184, 761);
             Controls.Add(exitbutton);
             Controls.Add(brandmanagementbutton);
             Controls.Add(salesmanagementbutton);
@@ -119,10 +119,9 @@
             Controls.Add(customermanagementbutton);
             Controls.Add(carmanagementbutton);
             Controls.Add(mainmenulabel);
-            Name = "Form1";
+            Name = "MainMenu";
             Text = "Main Menu";
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion

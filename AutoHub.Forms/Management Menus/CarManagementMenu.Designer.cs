@@ -32,97 +32,96 @@
             brandmanagementbutton = new Button();
             salesmanagementbutton = new Button();
             salespersonmanagementbutton = new Button();
-            customermanagementbutton = new Button();
-            carmanagementbutton = new Button();
-            mainmenulabel = new Label();
+            findcarbyidbutton = new Button();
+            viewallcarsbutton = new Button();
+            carmanagementlabel = new Label();
             SuspendLayout();
             // 
             // exitbutton
             // 
-            exitbutton.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            exitbutton.Location = new Point(218, 386);
+            exitbutton.Font = new Font("Microsoft Sans Serif", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
+            exitbutton.Location = new Point(390, 621);
             exitbutton.Name = "exitbutton";
-            exitbutton.Size = new Size(378, 50);
-            exitbutton.TabIndex = 12;
+            exitbutton.Size = new Size(404, 81);
+            exitbutton.TabIndex = 13;
             exitbutton.Text = "Exit";
             exitbutton.UseVisualStyleBackColor = true;
             // 
             // brandmanagementbutton
             // 
-            brandmanagementbutton.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            brandmanagementbutton.Location = new Point(218, 330);
+            brandmanagementbutton.Font = new Font("Microsoft Sans Serif", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
+            brandmanagementbutton.Location = new Point(390, 534);
             brandmanagementbutton.Name = "brandmanagementbutton";
-            brandmanagementbutton.Size = new Size(378, 50);
-            brandmanagementbutton.TabIndex = 11;
+            brandmanagementbutton.Size = new Size(404, 81);
+            brandmanagementbutton.TabIndex = 12;
             brandmanagementbutton.Text = "Brand Management";
             brandmanagementbutton.UseVisualStyleBackColor = true;
             // 
             // salesmanagementbutton
             // 
-            salesmanagementbutton.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            salesmanagementbutton.Location = new Point(218, 274);
+            salesmanagementbutton.Font = new Font("Microsoft Sans Serif", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
+            salesmanagementbutton.Location = new Point(390, 447);
             salesmanagementbutton.Name = "salesmanagementbutton";
-            salesmanagementbutton.Size = new Size(378, 50);
-            salesmanagementbutton.TabIndex = 10;
+            salesmanagementbutton.Size = new Size(404, 81);
+            salesmanagementbutton.TabIndex = 11;
             salesmanagementbutton.Text = "Sales Management";
             salesmanagementbutton.UseVisualStyleBackColor = true;
             // 
             // salespersonmanagementbutton
             // 
-            salespersonmanagementbutton.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            salespersonmanagementbutton.Location = new Point(218, 218);
+            salespersonmanagementbutton.Font = new Font("Microsoft Sans Serif", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
+            salespersonmanagementbutton.Location = new Point(390, 360);
             salespersonmanagementbutton.Name = "salespersonmanagementbutton";
-            salespersonmanagementbutton.Size = new Size(378, 50);
-            salespersonmanagementbutton.TabIndex = 9;
+            salespersonmanagementbutton.Size = new Size(404, 81);
+            salespersonmanagementbutton.TabIndex = 10;
             salespersonmanagementbutton.Text = "Salesperson Management";
             salespersonmanagementbutton.UseVisualStyleBackColor = true;
             // 
-            // customermanagementbutton
+            // findcarbyidbutton
             // 
-            customermanagementbutton.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            customermanagementbutton.Location = new Point(218, 162);
-            customermanagementbutton.Name = "customermanagementbutton";
-            customermanagementbutton.Size = new Size(378, 50);
-            customermanagementbutton.TabIndex = 8;
-            customermanagementbutton.Text = "Customer Management";
-            customermanagementbutton.UseVisualStyleBackColor = true;
+            findcarbyidbutton.Font = new Font("Microsoft Sans Serif", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
+            findcarbyidbutton.Location = new Point(390, 273);
+            findcarbyidbutton.Name = "findcarbyidbutton";
+            findcarbyidbutton.Size = new Size(404, 81);
+            findcarbyidbutton.TabIndex = 9;
+            findcarbyidbutton.Text = "Find Car by ID";
+            findcarbyidbutton.UseVisualStyleBackColor = true;
             // 
-            // carmanagementbutton
+            // viewallcarsbutton
             // 
-            carmanagementbutton.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            carmanagementbutton.Location = new Point(218, 106);
-            carmanagementbutton.Name = "carmanagementbutton";
-            carmanagementbutton.Size = new Size(378, 50);
-            carmanagementbutton.TabIndex = 7;
-            carmanagementbutton.Text = "Car Management";
-            carmanagementbutton.UseVisualStyleBackColor = true;
+            viewallcarsbutton.Font = new Font("Microsoft Sans Serif", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
+            viewallcarsbutton.Location = new Point(390, 186);
+            viewallcarsbutton.Name = "viewallcarsbutton";
+            viewallcarsbutton.Size = new Size(404, 81);
+            viewallcarsbutton.TabIndex = 8;
+            viewallcarsbutton.Text = "View All Cars";
+            viewallcarsbutton.UseVisualStyleBackColor = true;
             // 
-            // mainmenulabel
+            // carmanagementlabel
             // 
-            mainmenulabel.AutoSize = true;
-            mainmenulabel.Font = new Font("Calibri", 36F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            mainmenulabel.Location = new Point(277, 9);
-            mainmenulabel.Name = "mainmenulabel";
-            mainmenulabel.Size = new Size(256, 59);
-            mainmenulabel.TabIndex = 13;
-            mainmenulabel.Text = "Main Menu";
+            carmanagementlabel.Font = new Font("Calibri", 48F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            carmanagementlabel.Location = new Point(336, 53);
+            carmanagementlabel.Name = "carmanagementlabel";
+            carmanagementlabel.Size = new Size(497, 107);
+            carmanagementlabel.TabIndex = 7;
+            carmanagementlabel.Text = "Car Management";
+            carmanagementlabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // CarManagementMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(849, 487);
-            Controls.Add(mainmenulabel);
+            ClientSize = new Size(1184, 761);
             Controls.Add(exitbutton);
             Controls.Add(brandmanagementbutton);
             Controls.Add(salesmanagementbutton);
             Controls.Add(salespersonmanagementbutton);
-            Controls.Add(customermanagementbutton);
-            Controls.Add(carmanagementbutton);
+            Controls.Add(findcarbyidbutton);
+            Controls.Add(viewallcarsbutton);
+            Controls.Add(carmanagementlabel);
             Name = "CarManagementMenu";
             Text = "CarManagementMenu";
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -131,8 +130,8 @@
         private Button brandmanagementbutton;
         private Button salesmanagementbutton;
         private Button salespersonmanagementbutton;
-        private Button customermanagementbutton;
-        private Button carmanagementbutton;
-        private Label mainmenulabel;
+        private Button findcarbyidbutton;
+        private Button viewallcarsbutton;
+        private Label carmanagementlabel;
     }
 }
