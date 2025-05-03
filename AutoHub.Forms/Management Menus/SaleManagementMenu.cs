@@ -16,5 +16,13 @@ namespace AutoHub.Forms.Management_Menus
 		{
 			InitializeComponent();
 		}
+
+		private void backToMainMenuButton_Click(object sender, EventArgs e)
+		{
+			MainMenu mainMenu = new MainMenu();
+			this.Hide();
+			mainMenu.ShowDialog();
+			this.Close();
+		}
 	}
 }

@@ -86,6 +86,7 @@
 			salesmanagementbutton.TabIndex = 4;
 			salesmanagementbutton.Text = "Sales Management";
 			salesmanagementbutton.UseVisualStyleBackColor = true;
+			salesmanagementbutton.Click += salesmanagementbutton_Click;
 			// 
 			// brandmanagementbutton
 			// 

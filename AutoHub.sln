@@ -18,8 +18,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoHub.Buisness.Tests", "A
 		{69093246-C543-4F06-812F-B3C4204B77AF} = {69093246-C543-4F06-812F-B3C4204B77AF}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoHub.Forms", "AutoHub.Forms\AutoHub.Forms.csproj", "{A09DDB3E-541B-4DFB-A8C2-6282CAE19D99}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,10 +40,6 @@ Global
 		{D9479754-6630-4ED8-B0C6-521A3C0D6B03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9479754-6630-4ED8-B0C6-521A3C0D6B03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9479754-6630-4ED8-B0C6-521A3C0D6B03}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A09DDB3E-541B-4DFB-A8C2-6282CAE19D99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A09DDB3E-541B-4DFB-A8C2-6282CAE19D99}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A09DDB3E-541B-4DFB-A8C2-6282CAE19D99}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A09DDB3E-541B-4DFB-A8C2-6282CAE19D99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
