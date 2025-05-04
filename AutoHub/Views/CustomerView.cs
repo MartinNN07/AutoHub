@@ -20,7 +20,8 @@ namespace AutoHub.Views
 
 		public async Task DisplayMenu()
 		{
-			bool exit = false;
+            // Main menu loop
+            bool exit = false;
 			while (!exit)
 			{
 				Console.Clear();
@@ -80,7 +81,8 @@ namespace AutoHub.Views
 
 		public async Task DisplayAllCustomers()
 		{
-			Console.Clear();
+            // Clear the console and display the header
+            Console.Clear();
 			Console.WriteLine("========== All Customers ==========");
 
 			var customers = await _customerService.GetAllCustomersAsync();
@@ -90,16 +92,18 @@ namespace AutoHub.Views
 				return;
 			}
 
-			foreach (var customer in customers)
+            // Loop through each customer and display their details
+            foreach (var customer in customers)
 			{
-				DisplayCustomerDetails(customer);
+				await DisplayCustomerDetails(customer);
 				Console.WriteLine("---------------------------");
 			}
 		}
 
 		public Task DisplayCustomerDetails(Customer customer)
 		{
-			Console.WriteLine($"ID: {customer.Id}");
+            // Clear the console and display the header
+            Console.WriteLine($"ID: {customer.Id}");
 			Console.WriteLine($"Name: {customer.FirstName} {customer.LastName}");
 			Console.WriteLine($"Email: {customer.Email ?? "N/A"}");
 			Console.WriteLine($"Phone: {customer.PhoneNumber}");
@@ -109,13 +113,14 @@ namespace AutoHub.Views
 
 		public async Task FindCustomerById()
 		{
-			Console.Clear();
+            Console.Clear();
 			Console.WriteLine("========== Find Customer by ID ==========");
 			Console.Write("Enter Customer ID: ");
 
 			if (int.TryParse(Console.ReadLine(), out int id))
 			{
-				var customer = await _customerService.GetCustomerByIdAsync(id);
+                // Fetch the customer by ID
+                var customer = await _customerService.GetCustomerByIdAsync(id);
 				if (customer != null)
 				{
 					await DisplayCustomerDetails(customer);
@@ -138,14 +143,16 @@ namespace AutoHub.Views
 			Console.Write("Enter first name (or part of first name): ");
 			string searchTerm = Console.ReadLine() ?? string.Empty;
 
-			var customers = await _customerService.GetCustomerByFirstNameAsync(searchTerm);
+            // Fetch customers by first name
+            var customers = await _customerService.GetCustomerByFirstNameAsync(searchTerm);
 			if (!customers.Any())
 			{
 				Console.WriteLine($"No customers found matching '{searchTerm}'.");
 				return;
 			}
 
-			foreach (var customer in customers)
+            // Loop through each customer and display their details
+            foreach (var customer in customers)
 			{
 				await DisplayCustomerDetails(customer);
 				Console.WriteLine("---------------------------");
@@ -157,8 +164,9 @@ namespace AutoHub.Views
 			Console.Clear();
 			Console.WriteLine("========== Add New Customer ==========");
 
-			try
-			{
+            // Prompt the user for customer details
+            try
+            {
 				var customer = new Customer();
 
 				Console.Write("Enter First Name: ");
@@ -205,10 +213,12 @@ namespace AutoHub.Views
 		public async Task UpdateCustomer()
 		{
 			Console.Clear();
+			await DisplayAllCustomers();
 			Console.WriteLine("========== Update Customer ==========");
 			Console.Write("Enter Customer ID to update: ");
 
-			if (!int.TryParse(Console.ReadLine(), out int id))
+            // Prompt the user for the customer ID
+            if (!int.TryParse(Console.ReadLine(), out int id))
 			{
 				Console.WriteLine("Invalid ID format. Please enter a number.");
 				return;
@@ -221,7 +231,8 @@ namespace AutoHub.Views
 				return;
 			}
 
-			await DisplayCustomerDetails(existingCustomer);
+            // Display existing customer details
+            await DisplayCustomerDetails(existingCustomer);
 			Console.WriteLine("\nEnter new details (press Enter to keep current values):");
 
 			Console.Write($"First Name ({existingCustomer.FirstName}): ");
@@ -231,14 +242,15 @@ namespace AutoHub.Views
 				existingCustomer.FirstName = firstName;
 			}
 
-			Console.Write($"Last Name ({existingCustomer.LastName}): ");
+            Console.Write($"Last Name ({existingCustomer.LastName}): ");
 			string lastName = Console.ReadLine() ?? string.Empty;
 			if (!string.IsNullOrWhiteSpace(lastName))
 			{
 				existingCustomer.LastName = lastName;
 			}
 
-			Console.Write($"Email ({existingCustomer.Email ?? "N/A"}): ");
+            // Validate email format
+            Console.Write($"Email ({existingCustomer.Email ?? "N/A"}): ");
 			string email = Console.ReadLine() ?? string.Empty;
 			if (!string.IsNullOrWhiteSpace(email))
 			{
@@ -252,7 +264,8 @@ namespace AutoHub.Views
 				}
 			}
 
-			Console.Write($"Phone Number ({existingCustomer.PhoneNumber}): ");
+            // Validate phone number
+            Console.Write($"Phone Number ({existingCustomer.PhoneNumber}): ");
 			string phoneNumber = Console.ReadLine() ?? string.Empty;
 			if (!string.IsNullOrWhiteSpace(phoneNumber))
 			{
@@ -273,10 +286,12 @@ namespace AutoHub.Views
 		public async Task DeleteCustomer()
 		{
 			Console.Clear();
+			await DisplayAllCustomers();
 			Console.WriteLine("========== Delete Customer ==========");
 			Console.Write("Enter Customer ID to delete: ");
 
-			if (!int.TryParse(Console.ReadLine(), out int id))
+            // Prompt the user for the customer ID
+            if (!int.TryParse(Console.ReadLine(), out int id))
 			{
 				Console.WriteLine("Invalid ID format. Please enter a number.");
 				return;
@@ -289,7 +304,8 @@ namespace AutoHub.Views
 				return;
 			}
 
-			await DisplayCustomerDetails(customer);
+            // Display existing customer details
+            await DisplayCustomerDetails(customer);
 			Console.Write("\nAre you sure you want to delete this customer? (Y/N): ");
 			string confirmation = Console.ReadLine() ?? string.Empty;
 
@@ -313,8 +329,9 @@ namespace AutoHub.Views
 
 		private bool IsValidEmail(string email)
 		{
-			try
-			{
+            // Check if the email is in a valid format
+            try
+            {
 				var addr = new System.Net.Mail.MailAddress(email);
 				return addr.Address == email;
 			}

@@ -12,36 +12,32 @@ namespace AutoHub
 	{
 		static async Task Main(string[] args)
 		{
-			// Setup dependency injection
 			var serviceProvider = ConfigureServices();
-
-			// Run the main menu
 			await RunMainMenu(serviceProvider);
 		}
 
 		static ServiceProvider ConfigureServices()
 		{
-			// Create service collection
+			//setup dependency injection
 			var services = new ServiceCollection();
 
-			// Configure database connection
+			//configure database connection
 			services.AddDbContext<AutoHubDbContext>(options =>
 				options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=AutoHubDb;Trusted_Connection=True;MultipleActiveResultSets=true"));
 
-			// Register business services
+			//register business services
 			services.AddScoped<IBrandService, BrandService>();
 			services.AddScoped<ICarService, CarService>();
 			services.AddScoped<ICustomerService, CustomerService>();
 			services.AddScoped<ISaleService, SaleService>();
 			services.AddScoped<ISalespersonService, SalespersonService>();
 
-			// Register controllers
+			//register controllers
 			services.AddScoped<ICarController, CarController>();
 			services.AddScoped<IBrandController, BrandController>();
 			services.AddScoped<ICustomerController, CustomerController>();
 			services.AddScoped<ISaleController, SaleController>();
 			services.AddScoped<ISalespersonController, SalespersonController>();
-			// Add other controllers as needed when they're implemented
 
 			return services.BuildServiceProvider();
 		}
@@ -52,6 +48,7 @@ namespace AutoHub
 
 			while (!exit)
 			{
+				// Main menu
 				Console.Clear();
 				Console.WriteLine("========== AutoHub Management System ==========");
 				Console.WriteLine("1. Car Management");
@@ -60,8 +57,8 @@ namespace AutoHub
 				Console.WriteLine("4. Sales Management");
 				Console.WriteLine("5. Brand Management");
 				Console.WriteLine("0. Exit");
-				Console.WriteLine("==============================================");
-				Console.Write("Enter your choice: ");
+				Console.WriteLine("================================================");
+				Console.Write("Enter your choice: ");				
 
 				if (int.TryParse(Console.ReadLine(), out int choice))
 				{
@@ -106,6 +103,7 @@ namespace AutoHub
 			var carController = serviceProvider.GetRequiredService<ICarController>();
 			await carController.Run();
 		}
+
 		static async Task ManageCustomers(ServiceProvider serviceProvider)
 		{
 			var customerController = serviceProvider.GetRequiredService<ICustomerController>();
@@ -117,11 +115,13 @@ namespace AutoHub
 			var saleController = serviceProvider.GetRequiredService<ISaleController>();
 			await saleController.Run();
 		}
+
 		static async Task ManageSalespersons(ServiceProvider serviceProvider)
 		{
 			var salespersonController = serviceProvider.GetRequiredService<ISalespersonController>();
 			await salespersonController.Run();
 		}
+
 		static async Task ManageBrands(ServiceProvider serviceProvider)
 		{
 			var brandController = serviceProvider.GetRequiredService<IBrandController>();

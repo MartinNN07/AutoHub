@@ -20,7 +20,8 @@ namespace AutoHub.Business.Services
 		}
 		public async Task<Brand> CreateBrandAsync(Brand brand)
 		{
-			if (brand == null)
+            // Validate the brand object
+            if (brand == null)
 				throw new ArgumentNullException(nameof(brand));
 
 			await _context.Brands.AddAsync(brand);
@@ -31,7 +32,8 @@ namespace AutoHub.Business.Services
 
 		public async Task<bool> DeleteBrandAsync(int id)
 		{
-			var brand = await _context.Brands.FindAsync(id);
+            // Validate the ID
+            var brand = await _context.Brands.FindAsync(id);
 
 			if (brand == null)
 				return false;
@@ -44,29 +46,33 @@ namespace AutoHub.Business.Services
 
 		public async Task<IEnumerable<Brand>> GetAllBrandsAsync()
 		{
-			return await _context.Brands.ToListAsync();
+            // Fetch all brands from the database
+            return await _context.Brands.ToListAsync();
 		}
 
 		public async Task<Brand> GetBrandByIdAsync(int id)
 		{
-			return await _context.Brands
+            // Validate the ID
+            return await _context.Brands
 				.Include(b => b.Cars)
 				.FirstOrDefaultAsync(b => b.Id == id);
 		}
 
 		public async Task<IEnumerable<Brand>> GetBrandsByNameAsync(string searchTerm)
 		{
-			if (string.IsNullOrWhiteSpace(searchTerm))
+            // Validate the search term
+            if (string.IsNullOrWhiteSpace(searchTerm))
 				return await GetAllBrandsAsync();
 
 			return await _context.Brands
-				.Where(b => b.Name.Contains(searchTerm))
+				.Where(b => b.Name.ToLower().Contains(searchTerm.ToLower()))
 				.ToListAsync();
 		}
 
 		public async Task<Brand> UpdateBrandAsync(Brand brand)
 		{
-			if (brand == null)
+            // Validate the brand object
+            if (brand == null)
 				throw new ArgumentNullException(nameof(brand));
 
 			var existingBrand = await _context.Brands.FindAsync(brand.Id);

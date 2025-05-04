@@ -53,6 +53,7 @@ namespace AutoHub.Controllers
 
 		public async Task<Sale> CreateSaleAsync(Sale sale)
 		{
+			// Validate incoming sale
 			if (sale.SaleDate > DateTime.Now)
 			{
 				throw new ArgumentException("Sale date cannot be in the future.");
@@ -97,6 +98,7 @@ namespace AutoHub.Controllers
 		public async Task<Sale> UpdateSaleAsync(Sale sale)
 		{
 			var existingSale = await _saleService.GetSaleByIdAsync(sale.Id);
+			// Validate existing and incoming sale
 			if (existingSale == null)
 			{
 				throw new KeyNotFoundException($"Sale with ID {sale.Id} not found.");
@@ -160,6 +162,8 @@ namespace AutoHub.Controllers
 		public async Task<bool> DeleteSaleAsync(int id)
 		{
 			var existingSale = await _saleService.GetSaleByIdAsync(id);
+
+			// Validate existing sale
 			if (existingSale == null)
 			{
 				return false;

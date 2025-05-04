@@ -48,6 +48,8 @@ namespace AutoHub.Controllers
 		public async Task<Car> CreateCarAsync(Car car)
 		{
 			var brand = await _brandService.GetBrandByIdAsync(car.BrandId);
+
+			// Validate incoming car
 			if (brand == null)
 			{
 				throw new ArgumentException($"Brand with ID {car.BrandId} does not exist.");
@@ -79,6 +81,8 @@ namespace AutoHub.Controllers
 		public async Task<Car> UpdateCarAsync(Car car)
 		{
 			var existingCar = await _carService.GetCarByIdAsync(car.Id);
+
+			// Validate existing and incoming car
 			if (existingCar == null)
 			{
 				throw new KeyNotFoundException($"Car with ID {car.Id} not found.");

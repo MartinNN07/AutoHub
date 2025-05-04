@@ -20,7 +20,8 @@ namespace AutoHub.Views
 
 		public async Task DisplayMenu()
 		{
-			bool exit = false;
+            // Main menu loop
+            bool exit = false;
 			while (!exit)
 			{
 				Console.Clear();
@@ -83,7 +84,8 @@ namespace AutoHub.Views
 			Console.Clear();
 			Console.WriteLine("========== All Salespersons ==========");
 
-			var salespersons = await _salespersonService.GetAllSalespersonAsync();
+            // Fetch all salespersons from the service
+            var salespersons = await _salespersonService.GetAllSalespersonAsync();
 			if (!salespersons.Any())
 			{
 				Console.WriteLine("No salespersons found in the database.");
@@ -103,7 +105,8 @@ namespace AutoHub.Views
 			Console.WriteLine("========== Find Salesperson by ID ==========");
 			Console.Write("Enter Salesperson ID: ");
 
-			if (int.TryParse(Console.ReadLine(), out int id))
+            // Validate user input
+            if (int.TryParse(Console.ReadLine(), out int id))
 			{
 				var salesperson = await _salespersonService.GetSalespersonByIdAsync(id);
 				if (salesperson != null)
@@ -128,7 +131,8 @@ namespace AutoHub.Views
 			Console.Write("Enter first name (or part of first name): ");
 			string searchTerm = Console.ReadLine() ?? string.Empty;
 
-			var salespersons = await _salespersonService.GetSalespersonByFirstNameAsync(searchTerm);
+            // Validate user input
+            var salespersons = await _salespersonService.GetSalespersonByFirstNameAsync(searchTerm);
 			if (!salespersons.Any())
 			{
 				Console.WriteLine($"No salespersons found matching '{searchTerm}'.");
@@ -147,11 +151,13 @@ namespace AutoHub.Views
 			Console.Clear();
 			Console.WriteLine("========== Add New Salesperson ==========");
 
-			try
-			{
+            // Prompt user for details
+            try
+            {
 				var salesperson = new Salesperson();
 
-				Console.Write("Enter First Name: ");
+                // Prompt for first name
+                Console.Write("Enter First Name: ");
 				salesperson.FirstName = Console.ReadLine() ?? string.Empty;
 				if (string.IsNullOrWhiteSpace(salesperson.FirstName))
 				{
@@ -159,7 +165,8 @@ namespace AutoHub.Views
 					return;
 				}
 
-				Console.Write("Enter Last Name: ");
+                // Prompt for last name
+                Console.Write("Enter Last Name: ");
 				salesperson.LastName = Console.ReadLine() ?? string.Empty;
 				if (string.IsNullOrWhiteSpace(salesperson.LastName))
 				{
@@ -167,7 +174,8 @@ namespace AutoHub.Views
 					return;
 				}
 
-				Console.Write("Enter Employee Number: ");
+                // Prompt for employee number
+                Console.Write("Enter Employee Number: ");
 				salesperson.EmployeeNumber = Console.ReadLine() ?? string.Empty;
 				if (string.IsNullOrWhiteSpace(salesperson.EmployeeNumber))
 				{
@@ -175,7 +183,8 @@ namespace AutoHub.Views
 					return;
 				}
 
-				Console.Write("Enter Hire Date (yyyy-MM-dd): ");
+                // Prompt for hire date
+                Console.Write("Enter Hire Date (yyyy-MM-dd): ");
 				if (DateTime.TryParse(Console.ReadLine(), out DateTime hireDate))
 				{
 					salesperson.HireDate = hireDate;
@@ -186,7 +195,8 @@ namespace AutoHub.Views
 					return;
 				}
 
-				var createdSalesperson = await _salespersonService.CreateSalespersonAsync(salesperson);
+                //	Create the salesperson
+                var createdSalesperson = await _salespersonService.CreateSalespersonAsync(salesperson);
 				Console.WriteLine($"Salesperson added successfully with ID: {createdSalesperson.Id}");
 			}
 			catch (Exception ex)
@@ -198,55 +208,64 @@ namespace AutoHub.Views
 		public async Task UpdateSalesperson()
 		{
 			Console.Clear();
+			await DisplayAllSalespersons();
 			Console.WriteLine("========== Update Salesperson ==========");
 			Console.Write("Enter Salesperson ID to update: ");
 
+			//	Validate user input
 			if (!int.TryParse(Console.ReadLine(), out int id))
 			{
 				Console.WriteLine("Invalid ID format. Please enter a number.");
 				return;
 			}
 
-			var existingSalesperson = await _salespersonService.GetSalespersonByIdAsync(id);
+            // Fetch the existing salesperson
+            var existingSalesperson = await _salespersonService.GetSalespersonByIdAsync(id);
 			if (existingSalesperson == null)
 			{
 				Console.WriteLine($"Salesperson with ID {id} not found.");
 				return;
 			}
 
-			await DisplaySalespersonDetails(existingSalesperson);
+            // Display existing salesperson details
+            await DisplaySalespersonDetails(existingSalesperson);
 			Console.WriteLine("\nEnter new details (press Enter to keep current values):");
 
-			Console.Write($"First Name ({existingSalesperson.FirstName}): ");
+            // Prompt for first name
+            Console.Write($"First Name ({existingSalesperson.FirstName}): ");
 			string firstName = Console.ReadLine() ?? string.Empty;
 			if (!string.IsNullOrWhiteSpace(firstName))
 			{
 				existingSalesperson.FirstName = firstName;
 			}
 
-			Console.Write($"Last Name ({existingSalesperson.LastName}): ");
+            // Prompt for last name
+            Console.Write($"Last Name ({existingSalesperson.LastName}): ");
 			string lastName = Console.ReadLine() ?? string.Empty;
 			if (!string.IsNullOrWhiteSpace(lastName))
 			{
 				existingSalesperson.LastName = lastName;
 			}
 
-			Console.Write($"Employee Number ({existingSalesperson.EmployeeNumber}): ");
+            // Prompt for employee number
+            Console.Write($"Employee Number ({existingSalesperson.EmployeeNumber}): ");
 			string employeeNumber = Console.ReadLine() ?? string.Empty;
 			if (!string.IsNullOrWhiteSpace(employeeNumber))
 			{
 				existingSalesperson.EmployeeNumber = employeeNumber;
 			}
 
-			Console.Write($"Hire Date ({existingSalesperson.HireDate:yyyy-MM-dd}): ");
+            // Prompt for hire date
+            Console.Write($"Hire Date ({existingSalesperson.HireDate:yyyy-MM-dd}): ");
 			string hireDateInput = Console.ReadLine() ?? string.Empty;
 			if (!string.IsNullOrWhiteSpace(hireDateInput) && DateTime.TryParse(hireDateInput, out DateTime hireDate))
 			{
 				existingSalesperson.HireDate = hireDate;
 			}
 
-			try
-			{
+            //	Validate the updated salesperson
+            try
+            {
 				var updatedSalesperson = await _salespersonService.UpdateSalespersonAsync(existingSalesperson);
 				Console.WriteLine($"Salesperson with ID {updatedSalesperson.Id} updated successfully.");
 			}
@@ -259,27 +278,32 @@ namespace AutoHub.Views
 		public async Task DeleteSalesperson()
 		{
 			Console.Clear();
+			await DisplayAllSalespersons();
 			Console.WriteLine("========== Delete Salesperson ==========");
 			Console.Write("Enter Salesperson ID to delete: ");
 
-			if (!int.TryParse(Console.ReadLine(), out int id))
+            // Validate user input
+            if (!int.TryParse(Console.ReadLine(), out int id))
 			{
 				Console.WriteLine("Invalid ID format. Please enter a number.");
 				return;
 			}
 
-			var salesperson = await _salespersonService.GetSalespersonByIdAsync(id);
+            // Fetch the existing salesperson
+            var salesperson = await _salespersonService.GetSalespersonByIdAsync(id);
 			if (salesperson == null)
 			{
 				Console.WriteLine($"Salesperson with ID {id} not found.");
 				return;
 			}
 
-			await DisplaySalespersonDetails(salesperson);
+            // Display existing salesperson details
+            await DisplaySalespersonDetails(salesperson);
 			Console.Write("\nAre you sure you want to delete this salesperson? (Y/N): ");
 			string confirmation = Console.ReadLine() ?? string.Empty;
 
-			if (confirmation.Trim().ToUpper().StartsWith("Y"))
+            // Confirm deletion
+            if (confirmation.Trim().ToUpper().StartsWith("Y"))
 			{
 				bool result = await _salespersonService.DeleteSalespersonAsync(id);
 				if (result)
@@ -299,7 +323,8 @@ namespace AutoHub.Views
 
 		public async Task DisplaySalespersonDetails(Salesperson salesperson)
 		{
-			Console.WriteLine($"ID: {salesperson.Id}");
+            // Display detailed information about the salesperson
+            Console.WriteLine($"ID: {salesperson.Id}");
 			Console.WriteLine($"Name: {salesperson.FirstName} {salesperson.LastName}");
 			Console.WriteLine($"Employee Number: {salesperson.EmployeeNumber}");
 			Console.WriteLine($"Hire Date: {salesperson.HireDate:yyyy-MM-dd}");
